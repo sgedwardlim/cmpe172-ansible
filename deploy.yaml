@@ -1,0 +1,20 @@
+---
+- name: Deploy instance(s)
+  hosts: localhost
+  gather_facts: no
+  connection: local
+  vars:
+    service_account_email: 978202010878-compute@developer.gserviceaccount.com
+    credentials_file: ../cmpe172-215306-28c6c8dac0cb.json
+    project_id: cmpe172-215306
+    instance_names: cmpe172
+
+  tasks:
+    - name: Deploy instances
+      gce:
+        service_account_email: "{{ service_account_email }}"
+        credentials_file: "{{ credentials_file }}"
+        project_id: "{{ project_id }}"
+        instance_names: "{{ instance_names }}"
+        zone: us-east1-b
+        state: started
